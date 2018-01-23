@@ -22,7 +22,24 @@ def handle_linkfor():
 
 @app.route('/slackapi/addlink', methods=['POST'])
 def handle_addlink():
-    pass
+    '''
+        Handles the add link request
+    '''
+    link_raw = request.form['text']
+
+    # Parse input
+    # input is expected to be: $title; $url; $tag1, $tag2; 
+    try:
+        (title, url, tags) = link_raw.split(';')[0:3]
+        tags = tags.split(',')
+        link_dict.add_link(title,url,tags)
+
+    except Exception:
+        err_str = '''It looks like you have an error in your reqeust.
+                Make sure you follow the format: \"$title; $url; $tag1, $tag2;\" and ensure that the url you passed is valid
+            '''
+        return err_str, 400
+    return "Link added successfully!"
 
 http_server = WSGIServer(('', 80), app)
 http_server.serve_forever()
