@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 import re
+import atexit
 
 # Below is stolen from https://codereview.stackexchange.com/a/19670
 URL_REGEX = re.compile(
@@ -44,3 +45,4 @@ def add_link(title, link, tags):
 
 def cleanup():
     client.close()
+atexit.register(cleanup)
