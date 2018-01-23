@@ -31,8 +31,8 @@ def handle_addlink():
     # input is expected to be: $title; $url; $tag1, $tag2; 
     try:
         (title, url, tags) = link_raw.split(';')[0:3]
-        tags = [e.trim() for e in tags.trim().split(',')]
-        link_dict.add_link(title.trim(),url.trim(),tags)
+        tags = [e.strip() for e in tags.strip().split(',')]
+        link_dict.add_link(title.strip(),url.strip(),tags)
 
     except Exception as err:
         print(err)
