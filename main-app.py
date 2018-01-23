@@ -35,8 +35,9 @@ def handle_addlink():
         link_dict.add_link(title.trim(),url.trim(),tags)
 
     except Exception as err:
+        print(err)
         err_str = '''It looks like you have an error in your reqeust.
-                Make sure you follow the format: \"$title; $url; $tag1, $tag2;\" and ensure that the url you passed is valid
+            Make sure you follow the format: \"$title; $url; $tag1, $tag2;\" and ensure that the url you passed is valid
             '''
         return err_str
     return "Link added successfully!"
