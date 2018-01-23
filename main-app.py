@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from gevent.wsgi import WSGIServer
+import link_dict
 
 app = Flask(__name__)
 
@@ -11,8 +12,13 @@ def hello_world():
 @app.route('/slackapi/linkfor', methods=['POST'])
 def handle_linkfor():
     data = request.form 
-    print(data['text'])
-    return 'Message Recieved'
+    links = link_dict.get_link(data['text'])
+
+    return_text = 'Links mathching \"{}\" include: \n'.format(data['text']) 
+    for link in links:
+        return_text += '{}: {} \n'.format(link['title'], link['link'])
+
+    return return_text
 
 @app.route('/slackapi/addlink', methods=['POST'])
 def handle_addlink():

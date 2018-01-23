@@ -17,8 +17,6 @@ client = MongoClient('localhost', 27017)
 link_db = client['link_db']
 link_coll = link_db['link']
 
-
-
 def get_link(query):
     '''
         Searches the mongo database for the query term looking
