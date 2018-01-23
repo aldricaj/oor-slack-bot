@@ -12,6 +12,11 @@ def hello_world():
 def handle_linkfor():
     data = request.form 
     print(data['text'])
+    return 'Message Recieved'
+
+@app.route('/slackapi/addlink', methods=['POST'])
+def handle_addlink():
+    pass
 
 http_server = WSGIServer(('', 80), app)
 http_server.serve_forever()
