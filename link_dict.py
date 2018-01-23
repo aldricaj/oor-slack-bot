@@ -42,7 +42,5 @@ def add_link(title, link, tags):
     link = {'link': link, 'title': title, 'tags': tags} # Dict for the object
     link_coll.insert_one(link) # Actual insertion
 
-print(get_link('se'))
-
 def cleanup():
     client.close()
