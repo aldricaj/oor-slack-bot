@@ -11,7 +11,7 @@ def hello_world():
 @app.route('/slackapi/linkfor', methods=['POST'])
 def handle_linkfor():
     data = request.form 
-    print(data.text)
+    print(data['text'])
 
 http_server = WSGIServer(('', 80), app)
 http_server.serve_forever()
